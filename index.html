@@ -393,4 +393,12 @@ body {
         navigator.share(shareData)
           .then(() => showToast('Enlace compartido exitosamente'))
           .catch(() => {});
-      } e
+      } else {
+        navigator.clipboard.writeText(url)
+          .then(() => showToast('Enlace copiado al portapapeles'))
+          .catch(() => showToast('Copia el enlace: ' + url));
+      }
+    }
+  </script>
+</body>
+</html>
