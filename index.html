@@ -32,8 +32,8 @@
   <meta property="og:url" content="https://adaran.vercel.app/">
 
   <!-- Imagen OG (1200x630, <2MB). VERSIONADA EN EL NOMBRE -->
-  <meta property="og:image" content="https://adaran.vercel.app/imagenes/card-preview.v3.jpg">
-  <meta property="og:image:secure_url" content="https://adaran.vercel.app/imagenes/card-preview.v3.jpg">
+  <meta property="og:image" content="https://adaran.vercel.app/card-previewD.v3.jpg">
+  <meta property="og:image:secure_url" content="https://adaran.vercel.app/card-previewD.v3.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/jpeg">
@@ -43,7 +43,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Tarjeta – Angelica Daran-DARAN™ STUDIO">
   <meta name="twitter:description" content="Arquitecta de Negocios Digitales DARAN™ STUDIO. Contáctame desde mi tarjeta digital.">
-  <meta name="twitter:image" content="https://adaran.app/card-preview.v3.jpg">
+  <meta name="twitter:image" content="https://adaran.vercel.app/card-previewD.v3.jpg">
 
   <style>
     /* ===== Reset & Vars ===== */
@@ -247,6 +247,54 @@ body {
       background:#333;color:#fff;padding:12px 24px;border-radius:25px;font-size:14px;z-index:1000;transition:transform .3s ease
     }
     .toast.show{transform:translateX(-50%) translateY(0)}
+    /* ===== QR Modal ===== */
+    .qr-overlay{
+      position:fixed;inset:0;z-index:8000;
+      background:rgba(0,0,0,0);
+      display:flex;align-items:center;justify-content:center;
+      padding:24px;
+      pointer-events:none;
+      transition:background .35s ease;
+    }
+    .qr-overlay.active{
+      background:rgba(0,0,0,.72);
+      pointer-events:all;
+      backdrop-filter:blur(6px);
+    }
+    .qr-card{
+      background:linear-gradient(160deg,#011838 0%,#01162f 100%);
+      border:1px solid rgba(0,200,232,0.22);
+      border-radius:24px;
+      padding:28px 24px 22px;
+      width:min(88vw,340px);
+      box-shadow:0 24px 60px rgba(0,0,0,.6), 0 0 0 1px rgba(0,200,232,0.08);
+      display:flex;flex-direction:column;align-items:center;gap:16px;
+      opacity:0;transform:translateY(32px) scale(.94);
+      transition:opacity .38s cubic-bezier(.22,1,.36,1), transform .38s cubic-bezier(.22,1,.36,1);
+    }
+    .qr-overlay.active .qr-card{
+      opacity:1;transform:translateY(0) scale(1);
+    }
+    .qr-label{
+      font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+      color:rgba(232,244,248,0.45);
+    }
+    .qr-img-wrap{
+      width:100%;border-radius:14px;overflow:hidden;
+      border:1.5px solid rgba(0,200,232,0.18);
+      box-shadow:0 0 20px rgba(0,200,232,0.10);
+    }
+    .qr-img-wrap img{
+      width:100%;height:auto;display:block;
+    }
+    .qr-close{
+      margin-top:4px;background:rgba(0,200,232,0.10);border:1.5px solid rgba(0,200,232,0.28);
+      color:#00c8e8;border-radius:50px;padding:9px 32px;
+      font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+      cursor:pointer;transition:background .15s ease, transform .1s ease;
+    }
+    .qr-close:hover{background:rgba(0,200,232,0.20);}
+    .qr-close:active{transform:scale(.97);}
   </style>
 </head>
 <body>
@@ -276,12 +324,10 @@ body {
 
           <span class="divider" aria-hidden="true"></span>
 
-          <a class="action-btn action-btn--white"
-             href="https://www.google.com/maps/search/?api=1&query=Circuito%20San%20Roque%20Norte%20%23345%2C%20Parque%20industrial%20Santa%20Fe%20Ampliacion%2C%20Silao%2C%20Guanajuato%2C%20Mexico%2C%20C.P.%2036275"
-             target="_blank" rel="noopener" onclick="showToast('Abriendo Google Maps...')">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-            Ubicación
-          </a>
+          <button class="action-btn action-btn--white" type="button" onclick="openQR()">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zm1 1v5h5V4zm1 1h3v3H5zm8-2h7v7h-7zm1 1v5h5V4zm1 1h3v3h-3zM3 13h7v7H3zm1 1v5h5v-5zm1 1h3v3H5zm8 0h2v2h-2zm0 4h2v2h-2zm-2-4h2v2h-2zm4 0h2v2h-2zm2 2h2v2h-2zm-4 0h2v2h-2zm0 2h2v2h-2zm2 0h2v2h-2z"/></svg>
+            Ver QR
+          </button>
 
           <span class="divider" aria-hidden="true"></span>
 
@@ -371,10 +417,33 @@ body {
     </div>
   </div>
 
+  <!-- QR Modal -->
+  <div id="qrOverlay" class="qr-overlay" role="dialog" aria-modal="true" aria-label="Código QR" onclick="handleOverlayClick(event)">
+    <div class="qr-card">
+      <p class="qr-label">Escanea para contactarme</p>
+      <div class="qr-img-wrap">
+        <img src="qr_adaran.jpg" alt="Código QR Angelica Daran">
+      </div>
+      <button class="qr-close" onclick="closeQR()">Cerrar</button>
+    </div>
+  </div>
+
   <!-- Toast -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    function openQR(){
+      document.getElementById('qrOverlay').classList.add('active');
+      document.body.style.overflow='hidden';
+    }
+    function closeQR(){
+      document.getElementById('qrOverlay').classList.remove('active');
+      document.body.style.overflow='';
+    }
+    function handleOverlayClick(e){
+      if(e.target === document.getElementById('qrOverlay')) closeQR();
+    }
+
     /* Toast pequeño reutilizable */
     function showToast(msg){
       const t = document.getElementById('toast');
