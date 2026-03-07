@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#0a243f" />
+  <meta name="theme-color" content="#080e14" />
 
   <!-- =========================================================
        SEO / Open Graph — ACTUALIZA solo si cambia el dominio/imagen
@@ -34,29 +34,39 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Tarjeta – Angelica Daran-DARAN™ STUDIO">
   <meta name="twitter:description" content="Arquitecta de Negocios Digitales DARAN™ STUDIO. Contáctame desde mi tarjeta digital.">
-  <meta name="twitter:image" content="https://adaran.app/imagenes/card-preview.v3.jpg">
+  <meta name="twitter:image" content="https://adaran.app/card-preview.v3.jpg">
 
   <style>
     /* ===== Reset & Vars ===== */
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{
-      --bg:#0a243f;
-      --card:rgba(255,255,255,.18);
-      --ink:#fff;
-      --accent:#7cc0ff;
-      --divider:linear-gradient(180deg,rgba(255,255,255,.28),rgba(0,0,0,.40),rgba(255,255,255,.22));
-      --link:#0a66ff;
-      --link-hover:#0751cc;
-    }
-    html,body{min-height:100%}
-    body{
-      font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background:linear-gradient(135deg,#153d6a 0%,#0a243f 100%);
-      color:#111; overflow-x:hidden; font-size:18px;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      text-rendering:optimizeLegibility;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box }
+:root {
+  --bg: #080e14;
+  --card: rgba(255,255,255,0.05);
+  --card-border: rgba(0,200,232,0.12);
+  --ink: #e8f4f8;
+  --ink-muted: rgba(232,244,248,0.55);
+  --accent: #00c8e8;
+  --accent2: #0a84d4;
+  --gold: #c9a84c;
+  --divider: linear-gradient(180deg,rgba(0,200,232,0.18),rgba(0,0,0,0.6),rgba(0,200,232,0.10));
+  --link: #00c8e8;
+  --link-hover: #4ddaf0;
+}
+html, body { min-height: 100% }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+               'Helvetica Neue', Arial, sans-serif;
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(0,180,210,0.07) 0%, transparent 70%),
+    linear-gradient(180deg, #080e14 0%, #060c12 60%, #04080f 100%);
+  background-attachment: fixed;
+  color: var(--ink);
+  overflow-x: hidden;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 
     /* ===== Splash (animación suave) ===== */
     #splash{
@@ -100,12 +110,14 @@
 
     /* ===== Header ===== */
     .header{
-      background:linear-gradient(135deg,#134aa7 0%,#0a243f 100%);
-      padding:40px 20px; text-align:center; box-shadow:0 4px 6px rgba(0,0,0,.1);
+      background: linear-gradient(160deg, #0d1a24 0%, #080e14 55%, #050c14 100%);
+      border-bottom: 1px solid rgba(0,200,232,0.10);
+      padding:40px 20px; text-align:center; box-shadow:0 4px 24px rgba(0,0,0,.5);
     }
     .profile-photo{
-      width:150px;height:150px;border-radius:50%;background:#e0e0e0;margin:0 auto 20px;
-      overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.2);border:2px solid #fff;
+      width:150px;height:150px;border-radius:50%;background:#0d1a24;margin:0 auto 20px;
+      overflow:hidden;box-shadow:0 0 0 2px rgba(0,200,232,0.35), 0 8px 24px rgba(0,0,0,.5);
+      border:2px solid rgba(0,200,232,0.25);
       display:flex;align-items:center;justify-content:center;
     }
     .profile-photo img{width:100%;height:100%;object-fit:cover;object-position:center}
@@ -119,7 +131,7 @@
       letter-spacing:-0.2px;
     }
     .title{
-      color:rgba(255,255,255,.92);
+      color:#00c8e8;
       font-size:clamp(14px,2.6vw,18px);
       margin-bottom:22px;
       font-weight:500;
@@ -157,36 +169,46 @@
 
     /* ===== Tarjeta de contacto ===== */
     .contact-info{
-      background:#fff;margin:20px;border-radius:16px;padding:24px;
-      box-shadow:0 8px 32px rgba(0,0,0,.1)
+      background: rgba(10,18,28,0.85);
+      border: 1px solid rgba(0,200,232,0.10);
+      margin:20px;border-radius:16px;padding:24px;
+      box-shadow:0 8px 32px rgba(0,0,0,.4)
     }
-    .contact-item{display:flex;align-items:flex-start;gap:15px;padding:14px 0;border-bottom:1px solid #f0f0f0;transition:background .25s ease}
+    .contact-item{display:flex;align-items:flex-start;gap:15px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.07);transition:background .25s ease}
     .contact-item:last-child{border-bottom:none}
-    .contact-item:hover{background:#f8f9fa;border-radius:8px}
+    .contact-item:hover{background:rgba(0,200,232,0.04);border-radius:8px}
     .contact-icon{
-      width:42px;height:42px;background:#f0f7ff;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;color:#0f3156;flex:0 0 42px;margin-top:2px
+      width:42px;height:42px;
+      background:rgba(0,200,232,0.12);
+      border-radius:50%;
+      border:1.5px solid rgba(0,200,232,0.45);
+      box-shadow:0 0 10px rgba(0,200,232,0.18), inset 0 0 8px rgba(0,200,232,0.08);
+      display:flex;align-items:center;justify-content:center;
+      color:#00e5ff;
+      flex:0 0 42px;margin-top:2px
+    }
+    .contact-icon svg{
+      filter:drop-shadow(0 0 4px rgba(0,229,255,0.55));
     }
     .contact-details h3{
-      font-size:clamp(14px,3vw,18px);
-      color:#666;margin-bottom:4px;text-transform:uppercase;
-      font-weight:400;
-      letter-spacing:.4px;
+      font-size:clamp(11px,2.6vw,13px);
+      color:rgba(232,244,248,0.45);margin-bottom:4px;text-transform:uppercase;
+      font-weight:600;
+      letter-spacing:.8px;
     }
     .contact-details p{
       font-size:clamp(15px,3.4vw,17px);
-      color:#333;font-weight:500;
+      color:var(--ink);font-weight:500;
       overflow-wrap:anywhere;word-break:break-word;
       line-height:1.25;
     }
 
-    /* Links como el "dato Email" */
     .contact-details a,
     .contact-details .clickable-link{
       font-size:clamp(15px,3.4vw,17px);
       line-height:1.25;
       font-weight:500;
-      color:#0066cc;
+      color:#00c8e8;
       text-decoration:none;
       display:inline-block;
       overflow-wrap:anywhere;
@@ -194,17 +216,19 @@
       transition:color .15s ease;
     }
     .contact-details a:hover,
-    .contact-details .clickable-link:hover{ color:#0751cc; }
+    .contact-details .clickable-link:hover{ color:#4ddaf0; }
 
     /* ===== Redes ===== */
     .social-section{
-      background:#fff;margin:20px;border-radius:16px;padding:18px;
-      box-shadow:0 8px 32px rgba(0,0,0,.1)
+      background: rgba(10,18,28,0.85);
+      border: 1px solid rgba(0,200,232,0.10);
+      margin:20px;border-radius:16px;padding:18px;
+      box-shadow:0 8px 32px rgba(0,0,0,.4)
     }
-    .social-title{font-size:20px;font-weight:700;color:#333;margin-bottom:12px;text-align:center}
+    .social-title{font-size:16px;font-weight:700;color:rgba(232,244,248,0.45);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;text-align:center}
     .social-links{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    .social-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;min-height:80px;border:2px solid #f0f0f0;border-radius:10px;text-decoration:none;color:#666;background:#fafafa;transition:all .15s ease}
-    .social-btn:hover{border-color:#e0e0e0;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1);background:#fff}
+    .social-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;min-height:80px;border:1px solid rgba(0,200,232,0.14);border-radius:10px;text-decoration:none;color:rgba(232,244,248,0.7);background:rgba(0,200,232,0.04);transition:all .15s ease}
+    .social-btn:hover{border-color:rgba(0,200,232,0.35);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,200,232,0.10);background:rgba(0,200,232,0.08);color:#fff}
     .social-btn img{width:clamp(26px,5vw,34px);height:clamp(26px,5vw,34px);margin-bottom:6px}
     .social-btn span{font-size:clamp(9px,2.2vw,10px);letter-spacing:.5px;text-transform:uppercase;font-weight:700}
 
@@ -280,7 +304,7 @@
         </div>
         <div class="contact-details">
           <h3>Email</h3>
-          <a id="email" class="clickable-link" href="mailto:hablemos@daranstudio.com?subject=Contacto%20desde%20tarjeta%20digital&body=Hola%20Roc%C3%ADo%20del%20Pilar%20Tenorio," onclick="showToast('Abriendo aplicación de email...')">hablemos@daranstudio.com</a>
+          <a id="email" class="clickable-link" href="/cdn-cgi/l/email-protection#157d74777970787a6655717467747b666160717c7a3b767a782a6660777f70766128567a7b617476617a30272571706671703027256174677f706174302725717c727c61747933777a716c285d7a7974302725477a763056263054517a302725717079302725457c79746730272541707b7a677c7a39" onclick="showToast('Abriendo aplicación de email...')"><span class="__cf_email__" data-cfemail="6901080b050c04061a290d081b08071a1d1c0d0006470a0604">[email&#160;protected]</span></a>
         </div>
       </div>
 
@@ -341,7 +365,7 @@
   <!-- Toast -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     /* Toast pequeño reutilizable */
     function showToast(msg){
       const t = document.getElementById('toast');
@@ -360,14 +384,4 @@
         navigator.share(shareData)
           .then(() => showToast('Enlace compartido exitosamente'))
           .catch(() => {});
-      } else if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url)
-          .then(() => showToast('Enlace copiado al portapapeles'))
-          .catch(() => alert('Copia este enlace: ' + url));
-      } else {
-        alert('Copia este enlace: ' + url);
-      }
-    }
-  </script>
-</body>
-</html>
+      } e
