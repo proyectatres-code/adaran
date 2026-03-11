@@ -359,7 +359,7 @@ body {
         </div>
         <div class="contact-details">
           <h3>Email</h3>
-          <a id="email" class="clickable-link" href="mailto:hablemos@daranstudio.com" onclick="showToast('Abriendo aplicación de email...')">hablemos@daranstudio.com</a>
+          <a id="email" class="clickable-link" href="/cdn-cgi/l/email-protection#157d74777970787a6655717467747b666160717c7a3b767a78" onclick="showToast('Abriendo aplicación de email...')"><span class="__cf_email__" data-cfemail="3951585b555c54564a795d584b58574a4d4c5d5056175a5654">[email&#160;protected]</span></a>
         </div>
       </div>
 
@@ -431,7 +431,7 @@ body {
   <!-- Toast -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     function openQR(){
       document.getElementById('qrOverlay').classList.add('active');
       document.body.style.overflow='hidden';
@@ -453,21 +453,12 @@ body {
       return true;
     }
 
-    /* Compartir: usa siempre la ruta limpia /r */
+    /* Compartir: usa la URL raíz donde están los OG tags */
     function shareCard(){
-      const url = 'https://adaran.vercel.app/r';
+      const url = 'https://adaran.vercel.app/';
       const shareData = { title: document.title, text: document.title, url };
 
       if (navigator.share) {
         navigator.share(shareData)
           .then(() => showToast('Enlace compartido exitosamente'))
-          .catch(() => {});
-      } else {
-        navigator.clipboard.writeText(url)
-          .then(() => showToast('Enlace copiado al portapapeles'))
-          .catch(() => showToast('Copia el enlace: ' + url));
-      }
-    }
-  </script>
-</body>
-</html>
+   
